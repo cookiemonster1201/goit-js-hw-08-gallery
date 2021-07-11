@@ -52,11 +52,13 @@ lazyImages.forEach((img) => {
 const openModal = (e) => {
   refs.modal.classList.add("is-open");
   refs.lightboxImage.src = e.target.dataset.source;
+  refs.lightboxImage.alt = e.target.alt;
 };
 
 const closeModal = () => {
   refs.modal.classList.remove("is-open");
   refs.lightboxImage.src = "";
+  refs.lightboxImage.alt = "";
 };
 
 const onOpenOriginalImageClick = (e) => {
@@ -90,12 +92,14 @@ const onGalleryNavBtnPress = (arr) => (e) => {
     case 37:
       refs.lightboxImage.src =
         currentIndex === 0 ? arr[currentIndex] : arr[currentIndex - 1];
+      refs.lightboxImage.alt = galleryItems[currentIndex].description;
       break;
     case 39:
       refs.lightboxImage.src =
         currentIndex === arr.length - 1
           ? arr[currentIndex]
           : arr[currentIndex + 1];
+      refs.lightboxImage.alt = galleryItems[currentIndex].description;
       break;
     case 27:
       closeModal();
